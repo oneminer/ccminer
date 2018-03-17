@@ -1068,18 +1068,7 @@ static bool get_upstream_work(CURL *curl, struct work *work)
 
 	gettimeofday(&tv_start, NULL);
 
-	if (opt_algo == ALGO_SIA) {
-		char *sia_header = sia_getheader(curl, pool);
-		if (sia_header) {
-			rc = sia_work_decode(sia_header, work);
-			free(sia_header);
-		}
-		gettimeofday(&tv_end, NULL);
-		if (have_stratum || unlikely(work->pooln != cur_pooln)) {
-			return rc;
-		}
-		return rc;
-	}
+
 
 	if (opt_debug_threads)
 		applog(LOG_DEBUG, "%s: want_longpoll=%d have_longpoll=%d", __func__, want_longpoll, have_longpoll);
@@ -2006,93 +1995,14 @@ static void *miner_thread(void *userdata)
 		}
 		/* scan nonces for a proof-of-work hash */
 		switch (opt_algo) {
-			case ALGO_KECCAK:
-				rc = scanhash_keccak256(thr_id, &work, max_nonce, &hashes_done);
-				break;
-			case ALGO_BLAKE:
-				rc = scanhash_blake256_14round(thr_id, &work, max_nonce, &hashes_done);
-				break;
-			case ALGO_DECRED:
-				//applog(LOG_BLUE, "version %x, nbits %x, ntime %x extra %x",
-				//	work.data[0], work.data[29], work.data[34], work.data[38]);
-				rc = scanhash_decred(thr_id, &work, max_nonce, &hashes_done);
-				break;
-			case ALGO_BLAKECOIN:
-			case ALGO_VCASH:
-				rc = scanhash_blake256_8round(thr_id, &work, max_nonce, &hashes_done);
-				break;
-			case ALGO_BLAKE2S:
-				rc = scanhash_blake2s(thr_id, &work, max_nonce, &hashes_done);
-				break;
-/*			case ALGO_WHIRLPOOLX:
-				rc = scanhash_whirlpoolx(thr_id, &work, max_nonce, &hashes_done);
-				break;*/
-			case ALGO_LYRA2:
-				rc = scanhash_lyra2(thr_id, &work, max_nonce, &hashes_done);
-				break;
-			case ALGO_LYRA2v2:
-				rc = scanhash_lyra2v2(thr_id, &work, max_nonce, &hashes_done);
-				break;
+			
 			case ALGO_SKEIN:
 				rc = scanhash_skeincoin(thr_id, &work, max_nonce, &hashes_done);
 				break;
 			case ALGO_SKEIN2:
 				rc = scanhash_skein2(thr_id, &work, max_nonce, &hashes_done);
 				break;
-			case ALGO_NIST5:
-				rc = scanhash_nist5(thr_id, &work, max_nonce, &hashes_done);
-				break;
-			case ALGO_QUARK:
-				rc = scanhash_quark(thr_id, &work, max_nonce, &hashes_done);
-				break;
-			case ALGO_QUBIT:
-				rc = scanhash_qubit(thr_id, &work, max_nonce, &hashes_done);
-				break;
-			case ALGO_WHIRLPOOL:
-				rc = scanhash_whirl(thr_id, &work, max_nonce, &hashes_done);
-				break;
-			case ALGO_X11:
-				rc = scanhash_x11(thr_id, &work, max_nonce, &hashes_done);
-				break;
-			case ALGO_X11EVO:
-				rc = scanhash_x11evo(thr_id, &work, max_nonce, &hashes_done);
-				break;
-			case ALGO_C11:
-				rc = scanhash_c11(thr_id, &work, max_nonce, &hashes_done);
-				break;
-			case ALGO_HSR:
-				rc = scanhash_hsr(thr_id, &work, max_nonce, &hashes_done);
-				break;
-			case ALGO_SIB:
-				rc = scanhash_sib(thr_id, &work, max_nonce, &hashes_done);
-				break;
-			case ALGO_VELTOR:
-				rc = scanhash_veltor(thr_id, &work, max_nonce, &hashes_done);
-				break;			
-			case ALGO_X13:
-				rc = scanhash_x13(thr_id, &work, max_nonce, &hashes_done);
-				break;
-			case ALGO_X14:
-				rc = scanhash_x14(thr_id, &work, max_nonce, &hashes_done);
-				break;
-			case ALGO_X15:
-				rc = scanhash_x15(thr_id, &work, max_nonce, &hashes_done);
-				break;
-			case ALGO_X17:
-				rc = scanhash_x17(thr_id, &work, max_nonce, &hashes_done);
-				break;
-			case ALGO_LBRY:
-				rc = scanhash_lbry(thr_id, &work, max_nonce, &hashes_done);
-				break;
-			case ALGO_NEOSCRYPT:
-				rc = scanhash_neoscrypt(thr_id, &work, max_nonce, &hashes_done);
-				break;
-			case ALGO_SIA:
-				rc = scanhash_sia(thr_id, &work, max_nonce, &hashes_done);
-				break;
-			case ALGO_MYR_GR:
-				rc = scanhash_myriad(thr_id, &work, max_nonce, &hashes_done);
-				break;
+			
 			default:
 				/* should never happen */
 				goto out;
@@ -2424,18 +2334,7 @@ longpoll_retry:
 		if (switchn != pool_switch_count)
 			goto need_reinit;
 
-		if (opt_algo == ALGO_SIA) {
-			char *sia_header = sia_getheader(curl, pool);
-			if (sia_header) {
-				pthread_mutex_lock(&g_work_lock);
-				if (sia_work_decode(sia_header, &g_work)) {
-					g_work_time = time(NULL);
-				}
-				free(sia_header);
-				pthread_mutex_unlock(&g_work_lock);
-			}
-			continue;
-		}
+
 
 		val = json_rpc_longpoll(curl, lp_url, pool, rpc_req, &err);
 		if (have_stratum || switchn != pool_switch_count) {
