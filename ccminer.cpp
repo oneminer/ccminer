@@ -3323,7 +3323,7 @@ int main(int argc, char *argv[])
 	else
 		strcpy(comment_toolkit, "Not recommended prefer 7.5");
 		
-	printf("*** " PROGRAM_NAME " " PACKAGE_VERSION " for nVidia GPUs from alexis78@github ***\n");
+	printf("*** " PROGRAM_NAME " " PACKAGE_VERSION " for nVidia GPUs from alexis78@github forked by Arun Satyarth***\n");
 	if (!opt_quiet) {
 #ifdef _MSC_VER
 		printf("*** Built with VC++ 2013 and nVidia CUDA SDK %d.%d (%s)\n\n",
@@ -3334,6 +3334,7 @@ int main(int argc, char *argv[])
 		printf("*** Based on tpruvot@github nvidiaminer\n");
 		printf("*** Originally based on Christian Buchner and Christian H. project\n");
 		printf("*** Include some of the work of djm34, sp, tsiv and klausT.\n\n");
+		printf("*** Only meant for use from DigiByteMiner.exe \n\n");
 	}
 
 	rpc_user = strdup("");
