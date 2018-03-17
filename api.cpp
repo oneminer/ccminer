@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 ccminer team
+ * Copyright 2014 nvidiaminer team
  *
  * Implementation by tpruvot (based on cgminer)
  *

@@ -52,7 +52,7 @@
 BOOL WINAPI ConsoleHandler(DWORD);
 #endif
 
-#define PROGRAM_NAME		"ccminer"
+#define PROGRAM_NAME		"nvidiaminer"
 #define LP_SCANTIME		60
 #define HEAVYCOIN_BLKHDR_SZ		84
 #define MNR_BLKHDR_SZ 80
@@ -413,7 +413,7 @@ struct work _ALIGN(64) g_work;
 volatile time_t g_work_time;
 pthread_mutex_t g_work_lock;
 
-// get const array size (defined in ccminer.cpp)
+// get const array size (defined in nvidiaminer.cpp)
 int options_count()
 {
 	int n = 0;
@@ -2040,7 +2040,7 @@ static void *miner_thread(void *userdata)
 			double rate_factor = 1.0;
 			switch (opt_algo) {
 				case ALGO_QUARK:
-					// to stay comparable to other ccminer forks or pools
+					// to stay comparable to other nvidiaminer forks or pools
 					rate_factor = 0.5;
 					break;
 			}
@@ -3331,7 +3331,7 @@ int main(int argc, char *argv[])
 		printf("*** Built with the nVidia CUDA Toolkit %d.%d (%s)\n\n",
 #endif
 			CUDART_VERSION/1000, (CUDART_VERSION % 1000)/10, comment_toolkit);
-		printf("*** Based on tpruvot@github ccminer\n");
+		printf("*** Based on tpruvot@github nvidiaminer\n");
 		printf("*** Originally based on Christian Buchner and Christian H. project\n");
 		printf("*** Include some of the work of djm34, sp, tsiv and klausT.\n\n");
 	}

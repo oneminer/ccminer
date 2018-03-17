@@ -1,7 +1,7 @@
 /*
  * Copyright 2010 Jeff Garzik
  * Copyright 2012-2014 pooler
- * Copyright 2014 ccminer team
+ * Copyright 2014 nvidiaminer team
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -141,7 +141,7 @@ void applog(int prio, const char *fmt, ...)
 			use_colors ? CL_N : ""
 		);
 		if (prio == LOG_RAW){
-			// no time prefix, for ccminer -n		
+			// no time prefix, for nvidiaminer -n		
 			sprintf(f, "%s%s\n", fmt, CL_N);		
 		}
 		pthread_mutex_lock(&applog_lock);
@@ -191,13 +191,13 @@ void get_defconfig_path(char *out, size_t bufsize, char *argv0){
 	const char *sep = strstr(dir, "\\") ? "\\" : "/";
 	struct stat info;
 #ifdef WIN32
-	snprintf(out, bufsize, "%s\\ccminer\\ccminer.conf\0", getenv("APPDATA"));
+	snprintf(out, bufsize, "%s\\nvidiaminer\\nvidiaminer.conf\0", getenv("APPDATA"));
 #else
-	snprintf(out, bufsize, "%s\\.ccminer\\ccminer.conf", getenv("HOME"));
+	snprintf(out, bufsize, "%s\\.nvidiaminer\\nvidiaminer.conf", getenv("HOME"));
 #endif
 	if (dir && stat(out, &info) != 0) {
 		// binary folder if not present in user folder
-		snprintf(out, bufsize, "%s%sccminer.conf%s", dir, sep, "");
+		snprintf(out, bufsize, "%s%snvidiaminer.conf%s", dir, sep, "");
 	}
 	if (stat(out, &info) != 0) {
 		out[0] = '\0';
@@ -1852,13 +1852,13 @@ bool stratum_handle_method(struct stratum_ctx *sctx, const char *s){
 		ret = stratum_reconnect(sctx, params);
 		goto out;
 	}
-	if (!strcasecmp(method, "client.get_algo")) { // ccminer only yet!
+	if (!strcasecmp(method, "client.get_algo")) { // nvidiaminer only yet!
 		// will prevent wrong algo parameters on a pool, will be used as test on rejects
 		if (!opt_quiet) applog(LOG_BLUE, "Pool asked your algo parameter");
 		ret = stratum_get_algo(sctx, id, params);
 		goto out;
 	}
-	if (!strcasecmp(method, "client.get_stats")) { // ccminer/yiimp only yet!
+	if (!strcasecmp(method, "client.get_stats")) { // nvidiaminer/yiimp only yet!
 		// optional to fill device benchmarks
 		if (!opt_quiet) applog(LOG_BLUE, "Pool asked your stats");
 		ret = stratum_get_stats(sctx, id, params);

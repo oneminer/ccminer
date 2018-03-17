@@ -152,6 +152,7 @@
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
       <LinkStatus>false</LinkStatus>
       <LargeAddressAware>true</LargeAddressAware>
+      <OutputFile>$(OutDir)nvidiaminer$(TargetExt)</OutputFile>
     </Link>
     <CudaCompile>
       <CInterleavedPTX>false</CInterleavedPTX>

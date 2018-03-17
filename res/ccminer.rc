@@ -52,7 +52,7 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDI_ICON1               ICON                    "ccminer.ico"
+IDI_ICON1               ICON                    "nvidiaminer.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -78,7 +78,7 @@ BEGIN
         BEGIN
             VALUE "FileVersion", "1.0"
             VALUE "LegalCopyright", "Copyright (C) 2016"
-            VALUE "ProductName", "ccminer"
+            VALUE "ProductName", "nvidiaminer"
             VALUE "ProductVersion", "1.0"
         END
     END

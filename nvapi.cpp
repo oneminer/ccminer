@@ -2,7 +2,7 @@
 * Wrapper to nvapi.dll to query informations missing for x86 binaries (there is no nvml x86)
 * based on the work of https://github.com/ircubic/lib_gpu
 *
-* tpruvot@ccminer.org 06-2016
+* tpruvot@nvidiaminer.org 06-2016
 */
 
 #ifdef _WIN32
