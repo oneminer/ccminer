@@ -2136,7 +2136,7 @@ void print_hash_tests(void){
 	// buf[0] = 1; buf[64] = 2; // for endian tests
 
 	printf(CL_WHT "CPU HASH ON EMPTY BUFFER RESULTS:" CL_N "\n");
-
+	/*
 	blake256_8roundHash(&hash[0], &buf[0]);
 	printpfx("blake256 / 8round", hash);
 
@@ -2157,13 +2157,13 @@ void print_hash_tests(void){
 
 	lyra2v2_hash(&hash[0], &buf[0]);
 	printpfx("lyra2v2", hash);
-
+	*/
 	skeincoinhash(&hash[0], &buf[0]);
 	printpfx("skein", hash);
 	
 	skein2hash(&hash[0], &buf[0]);
 	printpfx("skein2", hash);
-		
+	/*
 	nist5hash(&hash[0], &buf[0]);
 	printpfx("nist5", hash);
 		
@@ -2214,7 +2214,7 @@ void print_hash_tests(void){
 	
 //	yescrypt(&hash[0], &buf[0]);
 //	printpfx("yescrypt", hash);	
-	
+	*/
 	printf("\n");
 
 	do_gpu_tests();

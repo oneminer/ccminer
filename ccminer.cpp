@@ -887,11 +887,7 @@ static bool submit_upstream_work(CURL *curl, struct work *work)
 		/* build hex string */
 		char *str = NULL;
 
-		if (opt_algo == ALGO_DECRED) {
-			data_size = 192; adata_sz = 180/4;
-		} else if(opt_algo == ALGO_SIA){
-			return sia_submit(curl,pool,work);
-		}
+
 
 		for (int i = 0; i < adata_sz; i++)
 			le32enc(work->data + i, work->data[i]);
