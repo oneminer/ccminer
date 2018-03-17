@@ -93,12 +93,6 @@
     <ClCompile Include="sph\aes_helper.c">
       <Filter>Source Files\sph</Filter>
     </ClCompile>
-    <ClCompile Include="sph\blake.c">
-      <Filter>Source Files\sph</Filter>
-    </ClCompile>
-    <ClCompile Include="sph\bmw.c">
-      <Filter>Source Files\sph</Filter>
-    </ClCompile>
     <ClCompile Include="sph\cubehash.c">
       <Filter>Source Files\sph</Filter>
     </ClCompile>
@@ -108,13 +102,7 @@
     <ClCompile Include="sph\fugue.c">
       <Filter>Source Files\sph</Filter>
     </ClCompile>
-    <ClCompile Include="sph\groestl.c">
-      <Filter>Source Files\sph</Filter>
-    </ClCompile>
     <ClCompile Include="sph\jh.c">
-      <Filter>Source Files\sph</Filter>
-    </ClCompile>
-    <ClCompile Include="sph\keccak.c">
       <Filter>Source Files\sph</Filter>
     </ClCompile>
     <ClCompile Include="sph\luffa.c">
@@ -139,9 +127,6 @@
       <Filter>Source Files\sph</Filter>
     </ClCompile>
     <ClCompile Include="sph\shabal.c">
-      <Filter>Source Files\sph</Filter>
-    </ClCompile>
-    <ClCompile Include="sph\whirlpool.c">
       <Filter>Source Files\sph</Filter>
     </ClCompile>
     <ClCompile Include="sph\haval.c">
@@ -183,9 +168,6 @@
     <ClCompile Include="compat\jansson\error.c">
       <Filter>Source Files\jansson</Filter>
     </ClCompile>
-    <ClCompile Include="lyra2\Lyra2.c">
-      <Filter>Source Files\sph</Filter>
-    </ClCompile>
     <ClCompile Include="bench.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -196,9 +178,6 @@
       <Filter>Source Files\sph</Filter>
     </ClCompile>
     <ClCompile Include="sph\ripemd.c">
-      <Filter>Source Files\sph</Filter>
-    </ClCompile>
-    <ClCompile Include="sph\blake2s.c">
       <Filter>Source Files\sph</Filter>
     </ClCompile>
     <ClCompile Include="sph\blake2b.c">
